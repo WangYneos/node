@@ -51,6 +51,7 @@ jobs:
         run: npx envinfo
       - name: Build
         run: |
+          git checkout v16.16.0
           ./vcbuild.bat dll
       - name: Upload
         uses: actions/upload-artifact@v3.1.0
