@@ -34,7 +34,7 @@ jobs:
     if: github.event.pull_request.draft == false
     strategy:
       matrix:
-        windows: [windows-latest]
+        windows: [windows-2019]
       fail-fast: false
     runs-on: ${{ matrix.windows }}
     steps:
@@ -50,4 +50,10 @@ jobs:
       - name: Environment Information
         run: npx envinfo
       - name: Build
-        run: ./vcbuild.bat dll
+        run: |
+          ./vcbuild.bat dll
+      - name: Upload
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: LiteLoader
+          path: ${{ github.workspace }}\out
